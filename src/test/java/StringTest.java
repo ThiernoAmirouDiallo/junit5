@@ -26,11 +26,16 @@ public class StringTest {
 
     @Test
     void assertBooleans(){
-        boolean result = "abcdefgh".contains("amir");
+        assertFalse("abcdefgh".contains("amir"));
+    }
 
-        assertEquals(false,result);
-        assertFalse(result);
+    @Test
+    void arrayEquals() {
+        String str = "montreal quebec ottawa";
+        String[] actualResult = str.split(" ");
+        String[] expectedResult = {"montreal", "quebec", "ottawa"};
 
+        assertArrayEquals(expectedResult,actualResult);
     }
 
 }
