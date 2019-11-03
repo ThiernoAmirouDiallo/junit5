@@ -1,5 +1,9 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.Duration;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+import javax.crypto.spec.PSource;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -11,6 +15,7 @@ import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.w3c.dom.ls.LSOutput;
 
 public class StringTest {
 
@@ -55,7 +60,7 @@ public class StringTest {
         //assertNull(result);
     }
 
-    @Test
+    //@Test
     @RepeatedTest(10)
     void assertBooleans() {
         assertFalse("abcdefgh".contains("amir"));
@@ -104,5 +109,12 @@ public class StringTest {
     @CsvSource(value = {"abc, 3", "ab, 2", "a, 1", "'',0", "abcde, 5"})
     void csvParameterizedLengthCase(String word, int expectedLength) {
         assertEquals(expectedLength, word.length());
+    }
+
+    @Test
+    void performance() {
+        assertTimeout(Duration.ofSeconds(5), () -> {
+            IntStream.range(0, 1000000).forEach(System.out::println);
+        });
     }
 }
