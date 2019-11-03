@@ -1,31 +1,43 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 
 public class StringTest {
 
-    @Test
-    void lengthBasic(){
-        int actualLength = "ABCD".length();
-        int expectedLength=4;
+    @BeforeEach //Befor in JUnit 4
+    void beforEach(TestInfo info) {
+        System.out.println("Initializing test data for : " + info.getDisplayName());
+    }
 
-        assertEquals(expectedLength,actualLength);
+    @AfterEach //After in JUnit4
+    void AfterEach(TestInfo info) {
+        System.out.println("Cleaning test data for : " + info.getDisplayName());
+    }
+
+    @Test
+    void lengthBasic() {
+        int actualLength = "ABCD".length();
+        int expectedLength = 4;
+
+        assertEquals(expectedLength, actualLength);
 
         //fail("Not yet implemented");
     }
 
     @Test
-    void toUpperCaseBasic()
-    {
+    void toUpperCaseBasic() {
         String str = "abcd";
-        String result =str.toUpperCase();
-        assertEquals("ABCD",result);
+        String result = str.toUpperCase();
+        assertEquals("ABCD", result);
         assertNotNull(result);
         //assertNull(result);
     }
 
     @Test
-    void assertBooleans(){
+    void assertBooleans() {
         assertFalse("abcdefgh".contains("amir"));
     }
 
@@ -35,7 +47,7 @@ public class StringTest {
         String[] actualResult = str.split(" ");
         String[] expectedResult = {"montreal", "quebec", "ottawa"};
 
-        assertArrayEquals(expectedResult,actualResult);
+        assertArrayEquals(expectedResult, actualResult);
     }
 
 }
