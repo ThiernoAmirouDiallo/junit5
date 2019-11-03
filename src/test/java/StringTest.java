@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 public class StringTest {
 
     @Test
-    void test(){
+    void lengthBasic(){
         int actualLength = "ABCD".length();
         int expectedLength=4;
 
@@ -14,5 +14,23 @@ public class StringTest {
         //fail("Not yet implemented");
     }
 
+    @Test
+    void toUpperCaseBasic()
+    {
+        String str = "abcd";
+        String result =str.toUpperCase();
+        assertEquals("ABCD",result);
+        assertNotNull(result);
+        //assertNull(result);
+    }
+
+    @Test
+    void assertBooleans(){
+        boolean result = "abcdefgh".contains("amir");
+
+        assertEquals(false,result);
+        assertFalse(result);
+
+    }
 
 }
