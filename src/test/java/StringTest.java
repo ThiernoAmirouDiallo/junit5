@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class StringTest {
@@ -89,5 +90,17 @@ public class StringTest {
     @ValueSource(strings = {"ABC", "AB", "A", "ABCDE"})
     void lengthGreaterThanZeroParameterized(String src) {
         assertTrue(src.length() > 0);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"abc, ABC", "ab, AB", "a, A", "'',''", "abcde, ABCDE"})
+    void csvParameterizeEqualsdCase(String word, String capitalizedWord) {
+        assertEquals(capitalizedWord, word.toUpperCase());
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"abc, 3", "ab, 2", "a, 1", "'',0", "abcde, 5"})
+    void csvParameterizedLengthCase(String word, int expectedLength) {
+        assertEquals(expectedLength, word.length());
     }
 }
