@@ -8,6 +8,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
@@ -42,6 +43,8 @@ public class StringTest {
     }
 
     @Test
+    @Disabled
+        //@Ignore JUnit4
     void lengthBasic() {
         int actualLength = "ABCD".length();
         int expectedLength = 4;
@@ -114,7 +117,7 @@ public class StringTest {
     @Test
     void performance() {
         assertTimeout(Duration.ofSeconds(5), () -> {
-            IntStream.range(0, 1000000).forEach(System.out::println);
+            IntStream.range(0, 10).forEach(System.out::println);
         });
     }
 }
