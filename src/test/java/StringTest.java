@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class StringTest {
 
@@ -75,4 +77,17 @@ public class StringTest {
         });
     }
 
+    @Test
+    void lengthGreaterThanZero() {
+        assertTrue("ABC".length() > 0);
+        assertTrue("AB".length() > 0);
+        assertTrue("A".length() > 0);
+        assertTrue("ABCD".length() > 0);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"ABC", "AB", "A", "ABCDE"})
+    void lengthGreaterThanZeroParameterized(String src) {
+        assertTrue(src.length() > 0);
+    }
 }
