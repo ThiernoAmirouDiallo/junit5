@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
@@ -19,6 +20,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.w3c.dom.ls.LSOutput;
 
 public class StringTest {
+
+    String str = "";
 
     @BeforeAll
     static void beforAll() {
@@ -119,5 +122,27 @@ public class StringTest {
         assertTimeout(Duration.ofSeconds(5), () -> {
             IntStream.range(0, 10).forEach(System.out::println);
         });
+    }
+
+    @Nested
+    @DisplayName("For an empty String")
+    class EmptyStringTest {
+
+        @BeforeEach
+        void setToEmpty() {
+            str = "";
+        }
+
+        @Test
+        @DisplayName("length should be zero")
+        void lengthIsZero() {
+            assertEquals(0, str.length());
+        }
+
+        @Test
+        @DisplayName("upper case is empty")
+        void upperCaseIsEmpty() {
+            assertEquals("", str.toUpperCase());
+        }
     }
 }
